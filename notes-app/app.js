@@ -55,8 +55,15 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: function(){
-        console.log('Removing note')
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string',
+        }
+    },
+    handler: function(argv){
+        console.log('Removing note with title '+ chalk.underline.red(argv.title))
     }
 })
 
@@ -69,7 +76,7 @@ yargs.command({
     }
 })
 
-//create list command
+//create read command
 yargs.command({
     command: 'read',
     describe: 'Reads a note',
