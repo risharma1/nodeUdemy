@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require('chalk')
 
 const loadNotesObject = function(){
     try{
@@ -41,9 +42,9 @@ const addNote = function(title, body){
         })
 
         saveNotesObject(notes)
-        console.log('Note added successfully')
+        console.log(chalk.green.bold('Note added successfully'))
     }else{
-        console.log('Note addition failed as a note with same title already exists')
+        console.log(chalk.red.bold('Note addition failed as a note with same title already exists'))
     }
 
     
@@ -60,9 +61,9 @@ const removeNote = function(title){
         return note.title=== title
     })
     if (notesToKeep.length == notes.length){
-        console.log('Note with title: %s is not found!',title)
+        console.log(chalk.red.bold('Note with title:',title,'is not found!'))
     }else{
-        console.log('Successfully Deleted Note: \n%s', JSON.stringify(deletedNote))
+        console.log(chalk.green.bold('Successfully Deleted Note \nTitle:'+deletedNote[0].title+'\nBody:'+deletedNote[0].body))
         saveNotesObject(notesToKeep)
     }
 }
