@@ -46,7 +46,7 @@ yargs.command({
         }
     },
     handler: function(argv){
-        console.log('Adding a new note with title : %s \n body:',argv.title, argv.body)
+        notes.addNote(argv.title, argv.body)
     }
 })
 
@@ -63,7 +63,7 @@ yargs.command({
         }
     },
     handler: function(argv){
-        console.log('Removing note with title '+ chalk.underline.red(argv.title))
+        notes.removeNote(argv.title)
     }
 })
 
