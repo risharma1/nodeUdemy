@@ -32,7 +32,7 @@ const event = {
          * them locally, and may not use 'this' binding of parent functions
          * resulting in undefined variables and functions, it might be calling using this
          */
-        //this.guestList.forEach(function(guestname){console.log(guestname +'is attending '+this.name)})
+        //this.guestList.fo rEach(function(guestname){console.log(guestname +'is attending '+this.name)})
         /**Using an arrow function with no 'this' binding of its own can help here */
         this.guestList.forEach((guestname)=>{console.log(guestname +'is attending '+this.name)})
     }
