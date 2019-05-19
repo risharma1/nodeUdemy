@@ -33,9 +33,12 @@ const addNote = function(title, body){
     console.log('Adding a new note')
     const notes = loadNotesObject()
     
-    const duplicateNodes = notes.filter((note) => note.title === title)
+    //const duplicateNodes = notes.filter((note) => note.title === title)
+    //using new findmethod to stp as soon as you find the object
+    const duplicateNode = notes.find((note) => note.title === title)
 
-    if (0 == duplicateNodes.length){
+    // if (0 == duplicateNodes.length){
+    if (!duplicateNode) {
         notes.push({
             title: title,
             body: body,
@@ -54,26 +57,34 @@ const removeNote = function(title){
     console.log('Removing note with title: %s',title)
     
     const notes = loadNotesObject()
-    const notesToKeep = notes.filter((note) => note.title !== title)
-    const deletedNote = notes.filter((note) => note.title === title)
-    if (notesToKeep.length == notes.length){
+    const noteToDelete = notes.find((note) => note.title !== title)
+    if (noteToDelete){
         console.log(chalk.red.bold('Note with title:',title,'is not found!'))
     }else{
-        console.log(chalk.green.bold('Successfully Deleted Note \nTitle:'+deletedNote[0].title+'\nBody:'+deletedNote[0].body))
+        const notesToKeep = notes.filter((note) => note.title !== title)
+        console.log(chalk.green.bold('Successfully Deleted Note \nTitle:'+noteToDelete.title+'\nBody:'+noteToDelete.body))
         saveNotesObject(notesToKeep)
     }
 }
 
 const readNote = function(title){
-    //function body
+    console.log('Reading note')
+    const notes = loadNotesObject()
+    const noteToRead = notes.find((note) => note.title === title)
+    if(noteToRead){
+        const noteTitle = chalk.yellow.italic(noteToRead.title);
+        const noteBody = chalk.yellow.italic(noteToRead.body)
+        console.log("The note says:\n"+noteTitle+"\n\n"+noteBody)
+    }else{
+        console.log(chalk.red.inverse("Note with TItle: "+title+" NOT FOUND!"))
+    }
 }
 
 const listNote = function(){
     console.log(chalk.blue.bold('Your current set of notes are:\n'))
     const notes = loadNotesObject()
     notes.forEach((x) => {
-        console.log(x)
-        
+        console.log(x.title)
     });    
 }
 
@@ -82,4 +93,5 @@ module.exports = {
     addNote: addNote,
     removeNote: removeNote,
     listNote: listNote,
+    readNote: readNote,
 }
