@@ -73,6 +73,7 @@ const listNote = function(){
     const notes = loadNotesObject()
     notes.forEach((x) => {
         console.log(x)
+        
     });    
 }
 
