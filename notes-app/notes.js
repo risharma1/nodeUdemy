@@ -25,10 +25,6 @@ const saveNotesObject = (object) => {
     }
 }
 
-const getNotes= function() {
-    return 'Your notes...'
-}
-
 const addNote = function(title, body){
     console.log('Adding a new note')
     const notes = loadNotesObject()
@@ -89,7 +85,6 @@ const listNote = function(){
 }
 
 module.exports = {
-    getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
     listNote: listNote,
