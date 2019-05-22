@@ -65,6 +65,7 @@ const removeNote = function(title){
 
 const readNote = function(title){
     console.log('Reading note')
+    debugger
     const notes = loadNotesObject()
     const noteToRead = notes.find((note) => note.title === title)
     if(noteToRead){
