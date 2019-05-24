@@ -7,9 +7,10 @@ const long = '-122.4233'
 
 request({
     url: urlWithKey+lat+','+long,
+    json: true, //using this our reuqest package will parse the response assuming its json
 }, (error, response) => {
-    //console.log(response)
-    debugger
-    const data = JSON.parse(response.body)
-    console.log(data.currently)
+    console.log(response.body.currently)
+    //debugger
+    //const data = JSON.parse(response.body)
+    //console.log(data.currently)
 })
