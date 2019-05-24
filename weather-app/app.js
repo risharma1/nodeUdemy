@@ -9,8 +9,6 @@ request({
     url: urlWithKey+lat+','+long,
     json: true, //using this our reuqest package will parse the response assuming its json
 }, (error, response) => {
-    console.log(response.body.currently)
-    //debugger
-    //const data = JSON.parse(response.body)
-    //console.log(data.currently)
+    console.log('It is currently %s degrees', response.body.currently.temperature)
+    console.log('There is %s \% chance of rain', response.body.currently.precipProbability)
 })
