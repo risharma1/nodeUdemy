@@ -12,11 +12,19 @@ request({
     url: forecastURLWithCoordinates+optionalParam,
     json: true, //using this our request package will parse the response assuming its json
 }, (error, response) => {
-    console.log(response.body.daily.data[0].summary + ' It is currently %s degrees', response.body.currently.temperature)
-    console.log('There is %s \% chance of rain', response.body.currently.precipProbability)
-    console.log(response.body.currently)
+    if(error){
+        //only one of error or response are populated
+        //the other one is undefined
+        console.log("unable to connect to weather service")
+    }else if(response.body.error){
+        console.log("Server error: ",response.body.error)
+    }else{
+        console.log(response.body.daily.data[0].summary + ' It is currently %s degrees', response.body.currently.temperature)
+        console.log('There is %s \% chance of rain', response.body.currently.precipProbability)
+        //console.log(response.body.currently)
+    }
 })
-
+ 
 //geocoding api
 //forward geocoding
 const geocodingAPIURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
@@ -28,9 +36,16 @@ request({
     url: geocodingAPIURL+place+tokenString+optionalParam2,
     json: true
 }, (error, response)=>{
-    const feature = response.body.features[0]
-    console.log("Place full Name: %s",feature.place_name)
-    //lat is at index 1
-    console.log("Co-ordinates: %s Lat, %s Long", feature.center[1], feature.center[0])
+    if(error){
+        console.log("unable to connect to geocoding service")
+    }else if(0 === response.body.features.length){
+        console.log("Cannot find any place with this name!")
+    }else{
+        //console.log(error)
+        const feature = response.body.features[0]
+        console.log("Place full Name: %s",feature.place_name)
+        //lat is at index 1
+        console.log("Co-ordinates: %s Lat, %s Long", feature.center[1], feature.center[0])
+    }
 })
 
