@@ -1,12 +1,20 @@
 const request = require('request')
-const geocodeApis = require('./utils/geocode.js/index.js')
-const forecastApis = require('./utils/forecast.js/index.js')
+const geocodeApis = require('./utils/geocode.js')
+const forecastApis = require('./utils/forecast.js')
 
-geocodeApis.getGeocode('Bengaluru',(error, response)=>{
-    if(error){
-        console.log(error)
-    }else{
+if(process.argv.length > 2){
+    const placeName = process.argv[2]
+    //console.log(process.argv)
+    geocodeApis.getGeocode(placeName,(error, response)=>{
+        if(error){
+            console.log(error)
+            return
+        }
         console.log(response.fullname)
-        forecastApis.getWeatherForecast(response.latitude, response.longitude)
-    }
-})
+        forecastApis.getWeatherForecast(response.latitude, response.longitude)  
+    })
+}else{
+    console.log("provide an argument [PlaceName] to getg weather forecast")
+}
+
+
