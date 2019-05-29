@@ -1,6 +1,6 @@
 const request = require('request')
-const geocodeApis = require('./geocode.js')
-const forecastApis = require('./forecast.js')
+const geocodeApis = require('./utils/geocode.js/index.js')
+const forecastApis = require('./utils/forecast.js/index.js')
 /* //weather api
 const weatherForecastApiURL = 'https://api.darksky.net/forecast/c6f3879289c51ce92d1411e9d8ec1c0b/'
 const lat = '37.8267'
