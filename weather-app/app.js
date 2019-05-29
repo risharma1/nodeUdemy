@@ -3,6 +3,7 @@ const geocodeApis = require('./utils/geocode.js')
 const forecastApis = require('./utils/forecast.js')
 
 if(process.argv.length > 2){
+    debugger
     const placeName = process.argv[2]
     //console.log(process.argv)
     geocodeApis.getGeocode(placeName,(error, response)=>{
@@ -14,7 +15,7 @@ if(process.argv.length > 2){
         forecastApis.getWeatherForecast(response.latitude, response.longitude)  
     })
 }else{
-    console.log("provide an argument [PlaceName] to getg weather forecast")
+    console.log("provide an argument \"PlaceName\" to getg weather forecast")
 }
 
 
