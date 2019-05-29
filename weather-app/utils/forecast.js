@@ -35,3 +35,28 @@ const getWeatherForecast = (latitude, longitude, callback=undefined) => {
 module.exports = {
     getWeatherForecast: getWeatherForecast
 }
+
+/* //weather api
+const weatherForecastApiURL = 'https://api.darksky.net/forecast/c6f3879289c51ce92d1411e9d8ec1c0b/'
+const lat = '37.8267'
+const long = '-122.4233'
+const forecastURLWithCoordinates = weatherForecastApiURL+lat+','+long
+const optionalParam = '?units=si&lang=en'
+
+Weatherforecast
+request({
+    url: forecastURLWithCoordinates+optionalParam,
+    json: true, //using this our request package will parse the response assuming its json
+}, (error, response) => {
+    if(error){
+        //only one of error or response are populated
+        //the other one is undefined
+        console.log("unable to connect to weather service")
+    }else if(response.body.error){
+        console.log("Server error: ",response.body.error)
+    }else{
+        console.log(response.body.daily.data[0].summary + ' It is currently %s degrees', response.body.currently.temperature)
+        console.log('There is %s \% chance of rain', response.body.currently.precipProbability)
+        //console.log(response.body.currently)
+    }
+})*/
