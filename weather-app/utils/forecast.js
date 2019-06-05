@@ -6,7 +6,7 @@ const getWeatherForecast = (latitude, longitude, callback=undefined) => {
     request({
         url: url,
         json: true,
-    },(error, response)=>{
+    },(error, {body})=>{
         if(error){
             const errorString = "unable to connect to weather service"
             if(callback){
@@ -14,15 +14,16 @@ const getWeatherForecast = (latitude, longitude, callback=undefined) => {
             }else{
                 console.log(errorString)
             }
-        }else if(response.body.error){
-            const errorString = "Server error: "+response.body.error
+        }else if(body.error){
+            const errorString = "Server error: "+body.error
             if(callback){
                 callback(errorString, undefined)
             }else{
                 console.log(errorString)
             }
         }else{
-            const responseString = response.body.daily.data[0].summary + ' It is currently '+response.body.currently.temperature+' degrees'+'\nThere is '+response.body.currently.precipProbability+' \% chance of rain'
+            const {temperature, precipProbability} = body.currently
+            const responseString = body.daily.data[0].summary + ' It is currently '+temperature+' degrees'+'\nThere is '+precipProbability+' \% chance of rain'
             if(callback){
                 callback(undefined, responseString)
             }else{

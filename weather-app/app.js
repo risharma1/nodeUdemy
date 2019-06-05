@@ -6,13 +6,13 @@ if(process.argv.length > 2){
     debugger
     const placeName = process.argv[2]
     //console.log(process.argv)
-    geocodeApis.getGeocode(placeName,(error, response)=>{
+    geocodeApis.getGeocode(placeName,(error, {fullname, latitude, longitude})=>{
         if(error){
             console.log(error)
             return
         }
-        console.log(response.fullname)
-        forecastApis.getWeatherForecast(response.latitude, response.longitude)  
+        console.log(fullname)
+        forecastApis.getWeatherForecast(latitude, longitude)  
     })
 }else{
     console.log("provide an argument \"PlaceName\" to getg weather forecast")

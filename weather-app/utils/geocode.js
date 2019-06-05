@@ -5,20 +5,20 @@ const getGeocode = (address, callback=undefined) => {
     request({
         url: url,
         json: true,
-    },(error, response)=>{
+    },(error, {body})=>{
         if(error){
             callback("Unable to connect to geocoding service", undefined)
-        }else if(0 === response.body.features.length){
+        }else if(0 === body.features.length){
             callback("Cannot find any place with name: "+address, undefined)
         }else{
             //console.log(error)
-            const feature = response.body.features[0]
+            const {place_name, center} = body.features[0]
             //lat is at index 1
             if(callback){
                 callback(undefined, {
-                    fullname: feature.place_name,
-                    latitude: feature.center[1],
-                    longitude: feature.center[0],
+                    fullname: place_name,
+                    latitude: center[1],
+                    longitude: center[0],
                 })
             }
         }
