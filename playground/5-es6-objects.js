@@ -30,6 +30,24 @@ const product = {
 //Destructuring syntax
 //resembles the type casting to base type 
 //so it keeps a few and throws aways others
-const {label, stock} = product 
+const {label, stock, rating} = product 
 
 console.log(label+" "+stock)
+console.log(rating) //no property in source prdouct
+
+//renaming properties while copying
+const {label:productLabel} = product
+console.log(productLabel)
+
+//setting up default propertyif object doesnt have it
+//for prop "rating"
+//the object property values is used if  object has it
+const {productRating = 5} = product
+console.log(productRating)
+
+//Passing by destructuring
+const transaction = (type, {label, price,stock}) => {
+    console.log(type, label, stock)
+}
+
+transaction('order', product)
