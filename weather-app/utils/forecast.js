@@ -4,7 +4,7 @@ const getWeatherForecast = (latitude, longitude, callback=undefined) => {
     const url = "https://api.darksky.net/forecast/c6f3879289c51ce92d1411e9d8ec1c0b/"+encodeURIComponent(latitude)+','+encodeURIComponent(longitude)+"?units=si&lang=en"
 
     request({
-        url: url,
+        url,
         json: true,
     },(error, {body})=>{
         if(error){
