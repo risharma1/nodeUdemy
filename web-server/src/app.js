@@ -9,7 +9,7 @@ const app = express()
 
  //first argument route and second is a function returning content
  app.get('', (req, res)=>{
-    res.send('Hi Express! ')
+    res.send('<h1>Weather</h1>')
  })
 
  app.get('/help',(req, res)=>{
@@ -17,11 +17,17 @@ const app = express()
  })
 
  app.get('/about',(req,res)=>{
-    res.send('About page.')
+    res.send({
+        name: 'rishabh',
+        age: 26
+    })
  })
 
  app.get('/weather',(req,res)=>{
-    res.send('Weather page.')
+    res.send({
+        forecast: 'its raining',
+        location: 'Bengaluru'
+    })
  })
 
  //starting up the server
