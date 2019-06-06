@@ -7,25 +7,19 @@ const app = express()
 /* using this we can directly access this content fromurl by giving full path
 and as the file name is index.html it also means that if we go for
 root route, then express still searches for index.html if it doesnot find
-rootroute configured */
+rootroute configured 
+
+All the files in the static folder can be accessed via their path
+.../help.html
+.../about..html
+without setting up explicit app.get routes
+*/
 app.use(express.static(publicDirectoryPath))
 
 /** Configuring routesfor our server
  * app.com - root
  * app.com/help - subroute
  */
-
- //first argument route and second is a function returning content
- app.get('/help',(req, res)=>{
-    res.send('Help page.')
- })
-
- app.get('/about',(req,res)=>{
-    res.send({
-        name: 'rishabh',
-        age: 26
-    })
- })
 
  app.get('/weather',(req,res)=>{
     res.send({
