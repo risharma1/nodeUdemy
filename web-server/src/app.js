@@ -1,13 +1,13 @@
 const path = require('path')
-const express = require('express') //exposes a single function
-
-console.log(__dirname)
-//platform independent core path module
-console.log(path.join(__dirname,'../public'))
+const express = require('express') //exposes a single functio
 
 const publicDirectoryPath = path.join(__dirname,'../public')
 const app = express()
 
+/* using this we can directly access this content fromurl by giving full path
+and as the file name is index.html it also means that if we go for
+root route, then express still searches for index.html if it doesnot find
+rootroute configured */
 app.use(express.static(publicDirectoryPath))
 
 /** Configuring routesfor our server
@@ -16,10 +16,6 @@ app.use(express.static(publicDirectoryPath))
  */
 
  //first argument route and second is a function returning content
- app.get('', (req, res)=>{
-    res.send('<h1>Weather</h1>')
- })
-
  app.get('/help',(req, res)=>{
     res.send('Help page.')
  })
