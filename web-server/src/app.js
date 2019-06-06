@@ -1,6 +1,14 @@
+const path = require('path')
 const express = require('express') //exposes a single function
 
+console.log(__dirname)
+//platform independent core path module
+console.log(path.join(__dirname,'../public'))
+
+const publicDirectoryPath = path.join(__dirname,'../public')
 const app = express()
+
+app.use(express.static(publicDirectoryPath))
 
 /** Configuring routesfor our server
  * app.com - root
