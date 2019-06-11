@@ -36,14 +36,14 @@ app.get('', (req, res)=>{
    //here we use res.render() method to serve views or hbs templates
    res.render('index', { //knows to look in "views" folder
    title: 'Weather',
-   name: "Rishabh"
+   name: "Rishabh Sharma"
    })
 })
 
 app.get('/about', (req, res)=>{
    res.render('about', {
       title: 'About Me',
-      name: 'Rishabh'
+      name: 'Rishabh Sharma'
    })
 })
 
@@ -52,7 +52,7 @@ app.get('/help', (req, res)=>{
    res.render('help', {
       helpText: 'Help Page text',
       title: 'Help',
-      name: 'Rishabh'
+      name: 'Rishabh Sharma'
    })
 })
 
