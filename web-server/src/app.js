@@ -70,14 +70,22 @@ app.get('/help', (req, res) => {
 
  //if we want to customize the subroute pages
  app.get('/help/*', (req, res) => {
-    res.send('Help article not found')
+    res.render('404',{
+       title: '404',
+       errorMessage:'Help article not found',
+       name: 'Rishabh Sharma'
+   })
  })
 
 //rest of the routes that didnt match above
 //express route match works like switch while comparing routes for requests
 //we can think of this wildcard route as default case
  app.get('*', (req, res) => {
-   res.send('My 404 page')
+   res.render('404',{
+      title: '404',
+      errorMessage: 'Page Not Found!',
+      name:'Rishabh Sharma'
+   })
  })
 
  //starting up the server
