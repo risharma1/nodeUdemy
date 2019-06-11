@@ -1,9 +1,13 @@
 const path = require('path')
-const express = require('express') //exposes a single functio
+const express = require('express') //exposes a single function
+const hbs = require('hbs')
 
 //Define paths for Express configs
 const publicDirectoryPath = path.join(__dirname,'../public')
-const viewsPath = path.join(__dirname, '../templates')
+const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
+
+
 const app = express()
 
 /* using this we can directly access this content fromurl by giving full path
@@ -24,6 +28,8 @@ app.use(express.static(publicDirectoryPath))
 app.set('view engine', 'hbs')
 //setting views location
 app.set('views', viewsPath)
+
+hbs.registerPartials(partialsPath)
 
 //setting route for serving hbs
 app.get('', (req, res)=>{
