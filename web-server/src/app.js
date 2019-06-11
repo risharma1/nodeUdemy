@@ -1,7 +1,9 @@
 const path = require('path')
 const express = require('express') //exposes a single functio
 
+//Define paths for Express configs
 const publicDirectoryPath = path.join(__dirname,'../public')
+const viewsPath = path.join(__dirname, '../templates')
 const app = express()
 
 /* using this we can directly access this content fromurl by giving full path
@@ -20,6 +22,8 @@ app.use(express.static(publicDirectoryPath))
 //here we are setting our Dynamic Templating Engine handlebars
 //and Express starts expecting "views"
 app.set('view engine', 'hbs')
+//setting views location
+app.set('views', viewsPath)
 
 //setting route for serving hbs
 app.get('', (req, res)=>{
