@@ -32,7 +32,7 @@ app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
 //setting route for serving hbs
-app.get('', (req, res)=>{
+app.get('', (req, res) => {
    //here we use res.render() method to serve views or hbs templates
    res.render('index', { //knows to look in "views" folder
    title: 'Weather',
@@ -40,7 +40,7 @@ app.get('', (req, res)=>{
    })
 })
 
-app.get('/about', (req, res)=>{
+app.get('/about', (req, res) => {
    res.render('about', {
       title: 'About Me',
       name: 'Rishabh Sharma'
@@ -48,7 +48,7 @@ app.get('/about', (req, res)=>{
 })
 
 
-app.get('/help', (req, res)=>{
+app.get('/help', (req, res) => {
    res.render('help', {
       helpText: 'Help Page text',
       title: 'Help',
@@ -61,14 +61,26 @@ app.get('/help', (req, res)=>{
  * app.com/help - subroute
  */
 
- app.get('/weather',(req,res)=>{
+ app.get('/weather', (req,res) => {
     res.send({
         forecast: 'its raining',
         location: 'Bengaluru'
     })
  })
 
+ //if we want to customize the subroute pages
+ app.get('/help/*', (req, res) => {
+    res.send('Help article not found')
+ })
+
+//rest of the routes that didnt match above
+//express route match works like switch while comparing routes for requests
+//we can think of this wildcard route as default case
+ app.get('*', (req, res) => {
+   res.send('My 404 page')
+ })
+
  //starting up the server
- app.listen(3000, ()=>{
+ app.listen(3000, () => {
     console.log("Server is up on port 3000")
  })
