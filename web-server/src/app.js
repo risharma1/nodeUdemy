@@ -50,7 +50,7 @@ app.get('/about', (req, res) => {
 
 app.get('/help', (req, res) => {
    res.render('help', {
-      helpText: 'Help Page text',
+      helptext: 'Help Page text',
       title: 'Help',
       name: 'Rishabh Sharma'
    })

@@ -2,11 +2,15 @@
 
 <html>
     <head>
+        <title>Help</title>
         <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
-        <!-- Using a partial, referencing it directly from the partial directory that i set up -->
-        {{>header}}
+        <div class="main-content">
+            <!-- Using a partial, referencing it directly from the partial directory that i set up -->
+            {{>header}}
+            <p>{{helptext}}</p>
+        </div>
         
         {{>footer}}
     </body>
