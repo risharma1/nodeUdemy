@@ -1,6 +1,8 @@
 const path = require('path')
 const express = require('express') //exposes a single function
 const hbs = require('hbs')
+const geocodeApis = require('./utils/geocode')
+const forecastApis = require('./utils/forecast')
 
 //Define paths for Express configs
 const publicDirectoryPath = path.join(__dirname,'../public')
@@ -61,16 +63,30 @@ app.get('/help', (req, res) => {
  * app.com/help - subroute
  */
 
- app.get('/weather', (req,res) => {
-   if (!req.query.address) {
+app.get('/weather', (req,res) => {
+   const address = req.query.address
+   if (!address) {
       return res.send({
           error: 'You must provide an address'
        })
     }
-    res.send({
-        address: req.query.address
-    })
- })
+    //Destructuring works only on source objects which are not undefined
+    geocodeApis.getGeocode(address,(error, geocode)=>{
+      if(error){
+         return res.send({ error })
+      }
+      forecastApis.getWeatherForecast(geocode.latitude, geocode.longitude, (error, forecast)=>{
+         if(error){
+            return res.send({ error })
+         }
+         res.send({
+            fullname: geocode.fullname,
+            forecast
+         })
+      })  
+  })
+   
+})
 
  app.get('/products', (req, res) => {
     if (!req.query.search) {
