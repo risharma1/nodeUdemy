@@ -6,7 +6,7 @@ if(process.argv.length > 2){
     debugger
     const placeName = process.argv[2]
     //console.log(process.argv)
-    geocodeApis.getGeocode(placeName,(error, {fullname, latitude, longitude})=>{
+    geocodeApis.getGeocode(placeName,(error, {fullname, latitude, longitude} = {})=>{
         if(error){
             console.log(error)
             return

@@ -71,16 +71,16 @@ app.get('/weather', (req,res) => {
        })
     }
     //Destructuring works only on source objects which are not undefined
-    geocodeApis.getGeocode(address,(error, geocode)=>{
+    geocodeApis.getGeocode(address,(error, {latitude,longitude, fullname} = {})=>{
       if(error){
          return res.send({ error })
       }
-      forecastApis.getWeatherForecast(geocode.latitude, geocode.longitude, (error, forecast)=>{
+      forecastApis.getWeatherForecast(latitude, longitude, (error, forecast)=>{
          if(error){
             return res.send({ error })
          }
          res.send({
-            fullname: geocode.fullname,
+            fullname: fullname,
             forecast
          })
       })  
