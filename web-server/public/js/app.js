@@ -30,7 +30,8 @@ weatherForm.addEventListener('submit', (e) =>{
 
     messageOne.textContent = "LOADING...."
     messageTwo.textContent = ''
-    fetch('http://localhost:3000/weather?address='+location).then((response) => {
+    //change url to point to relative positionwhen hosted on cliud
+    fetch('/weather?address='+location).then((response) => {
     response.json().then(({error, fullname, forecast} = {}) => {
         //runs when the json has arrived and parsed
         if(error){
